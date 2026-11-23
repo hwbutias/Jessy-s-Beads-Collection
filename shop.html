@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Jessy’s Beads Collection</title>
+  <meta name="description" content="Shop handcrafted beaded bags, necklaces, bracelets, anklets, waistbeads and bespoke beadwork. Ready-to-ship and made-to-order pieces.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">The catalog</p>
+        <h1>Shop the collection</h1>
+        <p class="lede">Every piece is hand-assembled from scratch. <strong>Ready-to-ship</strong> pieces dispatch right away; <strong>made-to-order</strong> pieces are crafted for you in 3–5 business days.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:40px">
+      <div class="container">
+        <div class="shop-toolbar">
+          <div class="chips" id="category-filters" role="group" aria-label="Filter by category"></div>
+          <label>
+            <span class="sr-only">Availability</span>
+            <select class="select" id="status-filter">
+              <option value="all">All availability</option>
+              <option value="ready">Ready to ship</option>
+              <option value="made">Made to order</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+
+        <div class="callout">
+          <strong>Need a different size or color?</strong> Every catalog design can be customized—tap
+          <em>Order via WhatsApp</em> on any piece, or use our <a href="custom.html">custom request builder</a>.
+          Not sure of your size? See the <a href="care.html#sizing">size &amp; fit guide</a>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="product-dialog" aria-label="Product details">
+    <button class="dialog-close" aria-label="Close">×</button>
+    <div class="dialog-content"></div>
+  </dialog>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

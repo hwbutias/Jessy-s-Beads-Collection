@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beading Workshops — Jessy’s Beads Collection</title>
+  <meta name="description" content="Beginner beading classes and group sessions with Jessy’s Beads Collection. Learn the fundamentals of beadwork with a starter kit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">Beading workshops &amp; training</p>
+        <h1>Learn to bead with us</h1>
+        <p class="lede">Structured, hands-on sessions that take you from your first strand to confident beadwork—perfect for beginners, friends, and group celebrations.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:40px">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Beginner Class</h3>
+            <ul>
+              <li>Bead types, threads and tools explained</li>
+              <li>Stringing, knotting and finishing techniques</li>
+              <li>Make and take home your own bracelet</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Group Beading Sessions</h3>
+            <ul>
+              <li>For friends, bridal parties, birthdays and team events</li>
+              <li>Guided project chosen for your group</li>
+              <li>Everyone leaves with a finished piece</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Starter Kit</h3>
+            <ul>
+              <li>Assorted glass seed beads and accent beads</li>
+              <li>Beading thread, stretch cord and clasps</li>
+              <li>Needles and a bead organizer to keep practising at home</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Upcoming dates</strong> are announced on our
+          <a href="#" data-social="instagram">Instagram</a> and <a href="#" data-social="tiktok">TikTok</a>.
+          Register your interest below and we’ll message you with the next available session.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container" style="max-width:760px">
+        <div class="section-head">
+          <p class="eyebrow">Sign up</p>
+          <h2>Reserve your spot</h2>
+        </div>
+        <form class="form-card" id="workshop-form">
+          <div class="two-col">
+            <label class="field"><span>Your name</span><input type="text" name="name" required autocomplete="name"></label>
+            <label class="field"><span>Number of people</span><input type="number" name="people" min="1" value="1" required></label>
+          </div>
+          <label class="field"><span>Session</span>
+            <select name="session">
+              <option>Beginner Class</option>
+              <option>Group Beading Session</option>
+              <option>Private one-on-one lesson</option>
+            </select>
+          </label>
+          <label class="field" style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="kit" checked> <span style="margin:0;font-weight:500">Include a starter kit to take home</span></label>
+          <label class="field"><span>Preferred dates or questions</span><textarea name="notes"></textarea></label>
+          <button class="btn btn-wa" type="submit">Sign up via WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>
