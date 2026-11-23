@@ -38,12 +38,16 @@
             <label class="field">
               <span class="sr-only">Item category</span>
               <select id="item" name="item">
-                <option value="bags">Beaded Bag</option>
+                <option value="custom-bracelets">Customized Bracelet (with name)</option>
+                <option value="bracelets">Bracelet (without name)</option>
+                <option value="mens">Male Collection piece</option>
+                <option value="bags">Bag / Purse</option>
+                <option value="waistbeads">Waist &amp; Belly Beads</option>
                 <option value="necklaces">Necklace</option>
-                <option value="bracelets">Bracelet</option>
                 <option value="anklets">Anklet</option>
-                <option value="waistbeads">Waistbeads</option>
-                <option value="trim">Custom Apparel Trim / Bespoke Accessory</option>
+                <option value="tissue-cases">Beaded Tissue Case</option>
+                <option value="keyholders">Keyholder</option>
+                <option value="trim">Something else (apparel trim, bridal set, bespoke idea)</option>
               </select>
             </label>
           </fieldset>
@@ -62,6 +66,10 @@
 
           <fieldset>
             <legend>3. Size &amp; fit</legend>
+            <label class="field" id="name-row" hidden>
+              <span>Name, initials or word to bead</span>
+              <input type="text" name="lettering" placeholder="e.g. JESSY" maxlength="40">
+            </label>
             <label class="field">
               <span id="fit-label">Measurement</span>
               <input type="text" id="fit" name="fit">

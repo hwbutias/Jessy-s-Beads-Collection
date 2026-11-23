@@ -52,6 +52,7 @@
           <div>
             <p class="footer-title">Shop</p>
             ${Object.entries(CATEGORIES).map(([k, c]) => `<a href="shop.html#${k}">${c.label}</a>`).join("")}
+            <a href="workshops.html">Skills Training</a>
           </div>
           <div>
             <p class="footer-title">Help</p>
@@ -121,8 +122,29 @@
           out += bead(x, y, 5.6, (row + i) % 5 === 0 ? c(2) : c((row % 3 === 0) ? 1 : 0));
         }
       }
+    } else if (kind === "name") {
+      const n = 22;
+      for (let i = 0; i < n; i++) {
+        const t = (2 * Math.PI * i) / n;
+        if (i >= 3 && i <= 8) continue; // letter tiles sit at the bottom of the ring
+        out += bead(100 + 64 * Math.cos(t), 100 + 64 * Math.sin(t), 8, i % 4 === 0 ? c(2) : c(i % 2));
+      }
+      "YSSEJ".split("").forEach((ch, k) => { // placed right-to-left along the bottom, so it reads JESSY
+        const t = (2 * Math.PI * (3.5 + k)) / n, x = 100 + 64 * Math.cos(t), y = 100 + 64 * Math.sin(t);
+        out += `<rect x="${(x - 9).toFixed(1)}" y="${(y - 9).toFixed(1)}" width="18" height="18" rx="3" fill="#fff" stroke="${c(2)}" stroke-width="1.5"/>` +
+          `<text x="${x.toFixed(1)}" y="${(y + 4.5).toFixed(1)}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="${c(2)}">${ch}</text>`;
+      });
+    } else if (kind === "tissue") {
+      for (let row = 0; row < 8; row++) {
+        for (let i = 0; i < 13; i++) {
+          const x = 34 + i * 11, y = 74 + row * 11;
+          if (row === 0 && i >= 4 && i <= 8) continue; // tissue slot
+          out += bead(x, y, 5.4, (row + i) % 6 === 0 ? c(2) : c(row % 3 === 0 ? 1 : 0));
+        }
+      }
+      out += `<path d="M84 72 C88 48 112 48 116 72" fill="#fff" stroke="${c(2)}" stroke-width="1.5"/>`;
     } else {
-      // custom: keychain / charm cluster
+      // keyholder / charm cluster
       out += `<circle cx="100" cy="40" r="16" fill="none" stroke="${c(2)}" stroke-width="4"/>`;
       [[-34, 0], [0, 1], [34, 2]].forEach(([dx, k]) => {
         for (let i = 0; i < 9; i++) out += bead(100 + dx * (i / 8), 64 + i * 12, i === 8 ? 9 : 6, i === 8 ? c(k + 1) : c(k));
@@ -202,10 +224,12 @@
     const filters = $("#category-filters");
     filters.innerHTML = [["all", "All pieces"], ...Object.entries(CATEGORIES).map(([k, c]) => [k, c.label])]
       .map(([k, l]) => `<button class="chip" data-cat="${k}" aria-pressed="${k === cat}">${l}</button>`)
-      .join("");
+      .join("") + `<a class="chip" href="workshops.html">Skills Training →</a>`;
 
     function render() {
-      const items = PRODUCTS.filter((p) => (cat === "all" || p.category === cat) && (status === "all" || p.status === status));
+      const order = Object.keys(CATEGORIES);
+      const items = PRODUCTS.filter((p) => (cat === "all" || p.category === cat) && (status === "all" || p.status === status))
+        .sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category));
       grid.innerHTML = items.length
         ? items.map(productCard).join("")
         : `<p class="empty">Nothing here yet in this filter—<a href="custom.html">request a custom piece</a> instead.</p>`;
@@ -220,6 +244,13 @@
     });
     $("#status-filter").addEventListener("change", (e) => { status = e.target.value; render(); });
     render();
+  }
+
+  function initCollectionChips() {
+    const el = $("#all-collections");
+    if (!el) return;
+    el.innerHTML = Object.entries(CATEGORIES).map(([k, c]) => `<a class="chip" href="shop.html#${k}">${c.label}</a>`).join("") +
+      `<a class="chip" href="workshops.html">Skills Training</a>`;
   }
 
   function initFeatured() {
@@ -254,6 +285,10 @@
     bracelets: { label: "Wrist measurement (inches)", placeholder: "e.g. 6.75", unit: "in" },
     anklets: { label: "Ankle measurement (inches)", placeholder: "e.g. 9.5", unit: "in" },
     waistbeads: { label: "Waist measurement (inches)", placeholder: "e.g. 32", unit: "in" },
+    "custom-bracelets": { label: "Wrist measurement (inches)", placeholder: "e.g. 6.75", unit: "in" },
+    mens: { label: "Wrist measurement (inches)", placeholder: "e.g. 8", unit: "in" },
+    "tissue-cases": { label: "Tissue box size", placeholder: "e.g. standard rectangle, or L × W × H", unit: "" },
+    keyholders: { label: "Quantity", placeholder: "e.g. 1, or 50 for an event", unit: "" },
     trim: { label: "Measurements / quantity", placeholder: "e.g. 40 inches of neckline trim", unit: "" },
   };
 
@@ -265,7 +300,7 @@
       `<label class="swatch"><input type="checkbox" name="colors" value="${n}"><span style="--c:${hex}"></span><em>${n}</em></label>`
     ).join("");
 
-    const item = $("#item", form), closureRow = $("#closure-row"), fit = $("#fit-label"), fitInput = $("#fit", form);
+    const item = $("#item", form), closureRow = $("#closure-row"), nameRow = $("#name-row"), fit = $("#fit-label"), fitInput = $("#fit", form);
     const preview = $("#builder-preview");
     function sync() {
       const v = item.value;
@@ -273,8 +308,9 @@
       fit.textContent = f.label;
       fitInput.placeholder = f.placeholder;
       closureRow.hidden = v !== "waistbeads";
+      nameRow.hidden = v !== "custom-bracelets" && v !== "keyholders";
       const picked = $$("input[name=colors]:checked", sw).map((i) => SWATCHES.find((s) => s[0] === i.value)[1]);
-      const art = { bags: "bag", necklaces: "necklace", bracelets: "bracelet", anklets: "anklet", waistbeads: "waistbeads", trim: "custom" }[v] || "custom";
+      const art = (CATEGORIES[v] && CATEGORIES[v].art) || "custom";
       preview.innerHTML = beadArt(art, picked.length ? picked : undefined);
     }
     const qp = new URLSearchParams(location.search).get("item");
@@ -298,6 +334,7 @@
         "Hello Jessy’s Beads Collection! I’d like a custom piece:",
         `• Item: ${label}`,
         colors.length ? `• Colors: ${colors.join(", ")}` : null,
+        !nameRow.hidden && d.get("lettering") ? `• Name / letters: ${d.get("lettering")}` : null,
         d.get("fit") ? `• ${fit.textContent}: ${d.get("fit")}` : null,
         item.value === "waistbeads" ? `• Closure: ${d.get("closure")}` : null,
         d.get("occasion") ? `• Occasion / date needed: ${d.get("occasion")}` : null,
@@ -353,6 +390,7 @@
     renderChrome();
     hydrateArt();
     initFeatured();
+    initCollectionChips();
     initShop();
     initDialog();
     initBuilder();

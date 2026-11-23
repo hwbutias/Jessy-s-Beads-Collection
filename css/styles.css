@@ -140,6 +140,8 @@ p { margin: 0 0 1em; }
 .shop-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 28px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 16px; font: 500 0.88rem var(--sans); cursor: pointer; color: var(--ink); }
+a.chip { text-decoration: none; display: inline-block; }
+a.chip:hover { border-color: var(--ink); }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .select { padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--line); font: inherit; background: #fff; color: var(--ink); }
 .empty { grid-column: 1 / -1; color: var(--muted); }

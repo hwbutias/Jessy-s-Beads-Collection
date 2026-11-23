@@ -1,21 +1,84 @@
 /*
  * Product catalog. Add, remove or edit items here.
- *  - category: bags | necklaces | bracelets | anklets | waistbeads | custom
+ *  - category: one of the keys in CATEGORIES below (they mirror the WhatsApp catalog collections)
  *  - status:   "ready" (ready-to-ship) or "made" (made-to-order)
  *  - price:    a number in SITE.currency, or null to show "Ask for price"
  *  - palette:  bead colours used for the illustration (swap for a photo via `image`)
  *  - image:    optional path to a real product photo, e.g. "images/clutch-gold.jpg"
  */
 window.CATEGORIES = {
-  bags: { label: "Beaded Bags", art: "bag" },
+  "custom-bracelets": { label: "Customized Bracelets", art: "name" },
+  bracelets: { label: "Bracelets (without names)", art: "bracelet" },
+  mens: { label: "Male Collections", art: "bracelet" },
+  bags: { label: "Bags & Purses", art: "bag" },
+  waistbeads: { label: "Waist & Belly Beads", art: "waistbeads" },
   necklaces: { label: "Necklaces", art: "necklace" },
-  bracelets: { label: "Bracelets", art: "bracelet" },
   anklets: { label: "Anklets", art: "anklet" },
-  waistbeads: { label: "Waistbeads", art: "waistbeads" },
-  custom: { label: "Bespoke & Custom", art: "custom" },
+  "tissue-cases": { label: "Beaded Tissue Cases", art: "tissue" },
+  keyholders: { label: "Keyholders", art: "custom" },
 };
 
 window.PRODUCTS = [
+  {
+    id: "name-bracelet",
+    name: "The Customized Name Bracelet",
+    category: "custom-bracelets",
+    status: "made",
+    price: null,
+    tagline: "Your name, your word, your colors—beaded just for you.",
+    description:
+      "Spell out a name, initials, a date or a meaningful word in letter beads, framed by seed beads and crystals in the colors you choose. A personal keepsake for yourself, and a thoughtful gift for birthdays, bridal parties and best friends.",
+    details: [
+      ["Materials", "Letter beads, glass seed beads, faceted crystal accents, stretch cord or tarnish-resistant clasp"],
+      ["How to Order", "Send the name or word, your colors and your wrist measurement (standard 6.5\"–7.5\")"],
+    ],
+    palette: ["#ff6c00", "#f3e2a9", "#141414"],
+  },
+  {
+    id: "mens-bracelet",
+    name: "The Men’s Beaded Bracelet",
+    category: "mens",
+    status: "made",
+    price: null,
+    tagline: "Clean, bold beadwork made for him.",
+    description:
+      "Bracelets for men in deeper tones and larger beads—understated enough for every day, with a finish that holds up to daily wear. Wear one alone or pair two for a stack.",
+    details: [
+      ["Materials", "Larger glass, stone-look or matte beads, high-elasticity stretch cord or secure clasp"],
+      ["Sizing", "Custom-fitted to your wrist measurement"],
+    ],
+    palette: ["#141414", "#6b4a2b", "#c9a227"],
+  },
+  {
+    id: "tissue-case",
+    name: "The Beaded Tissue Case",
+    category: "tissue-cases",
+    status: "made",
+    price: null,
+    tagline: "An everyday essential, dressed in beads.",
+    description:
+      "A structured beaded cover for your tissue box that turns a table, car dashboard or vanity into a statement. Woven bead by bead in your choice of colors to match your home, office or event décor.",
+    details: [
+      ["Materials", "Crystal/acrylic beads on reinforced thread, woven to hold its shape"],
+      ["Customization", "Choose your colors or pattern; tell us the size of your tissue box"],
+    ],
+    palette: ["#ff6c00", "#f3e2a9", "#141414"],
+  },
+  {
+    id: "keyholder",
+    name: "The Beaded Keyholder",
+    category: "keyholders",
+    status: "made",
+    price: null,
+    tagline: "A little beadwork you carry every day.",
+    description:
+      "Handmade beaded keyholders and charms in your colors, with initials or names on request. Perfect for gifts, party favors and branded giveaways for your business or event.",
+    details: [
+      ["Materials", "Glass and acrylic beads, letter beads on request, sturdy metal key ring"],
+      ["Bulk Orders", "Available in sets for events, souvenirs and brands—message us with quantities"],
+    ],
+    palette: ["#ff6c00", "#f3e2a9", "#141414"],
+  },
   {
     id: "signature-tote",
     name: "The Signature Structured Beaded Tote",
@@ -135,19 +198,5 @@ window.PRODUCTS = [
       ["How to Order", "Select your preferred closure style and enter your exact waist measurement in inches"],
     ],
     palette: ["#b5452a", "#c9a227", "#7fd1b9"],
-  },
-  {
-    id: "bespoke",
-    name: "Bespoke Beaded Accessories & Custom Orders",
-    category: "custom",
-    status: "made",
-    price: null,
-    tagline: "Your vision, brought to life bead by bead.",
-    description:
-      "Looking for a coordinated jewelry set, bridal party accessories, custom beaded apparel trims, or keychains and phone charms? Share your theme, colors, or inspiration photos, and we will design a cohesive, one-of-a-kind piece tailored specifically for your event or brand.",
-    details: [
-      ["Custom Process", "Direct consultation via WhatsApp, bead color approval before assembly, and progress updates"],
-    ],
-    palette: ["#6c5a9e", "#d9779a", "#c9a227"],
   },
 ];
