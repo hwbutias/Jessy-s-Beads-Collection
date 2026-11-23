@@ -5,9 +5,9 @@ window.SITE = {
   name: "Jessy’s Beads Collection",
   // WhatsApp number in international format, digits only (e.g. 233241234567 for Ghana).
   // Leave empty until the real number is ready: buttons will then open WhatsApp without a preset contact.
-  whatsapp: "",
-  instagram: "https://www.instagram.com/",
-  tiktok: "https://www.tiktok.com/",
+  whatsapp: "233557419718",
+  instagram: "https://www.instagram.com/jessy_beads.collection/",
+  tiktok: "https://www.tiktok.com/@jessy_beads.collection",
   email: "",
   currency: "GH₵",
   // Short looping craft videos (TikTok or Instagram post URLs) shown on the homepage.
