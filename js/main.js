@@ -22,7 +22,7 @@
       header.innerHTML = `
         <div class="container header-inner">
           <a class="brand" href="index.html" aria-label="${esc(SITE.name)} home">
-            <span class="brand-mark" aria-hidden="true">${beadArt("bracelet", ["#c9a227", "#b5452a", "#2f7a6b"], 40)}</span>
+            <img class="brand-logo" src="images/logo-light.png" alt="" width="52" height="52">
             <span class="brand-name">Jessy’s <em>Beads</em> Collection</span>
           </a>
           <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
@@ -45,6 +45,7 @@
       footer.innerHTML = `
         <div class="container footer-grid">
           <div>
+            <img class="footer-logo" src="images/logo-dark.png" alt="Jessy’s Beads Collection logo" width="112" height="112" loading="lazy">
             <p class="footer-brand">Jessy’s Beads Collection</p>
             <p>Handcrafted beadwork made to turn heads. Hand-assembled in our studio in Accra, Ghana.</p>
           </div>
@@ -65,6 +66,7 @@
             <a href="${waLink("Hello Jessy’s Beads Collection!")}" target="_blank" rel="noopener">WhatsApp</a>
             <a href="${esc(SITE.instagram)}" target="_blank" rel="noopener">Instagram</a>
             <a href="${esc(SITE.tiktok)}" target="_blank" rel="noopener">TikTok</a>
+            <a href="tel:+${esc(SITE.whatsapp)}">055 741 9718</a>
             ${SITE.email ? `<a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>` : ""}
           </div>
         </div>
